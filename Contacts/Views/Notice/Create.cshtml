@@ -1,0 +1,24 @@
+﻿@model Contacts.Models.AddNoticeModel
+
+@{
+    ViewBag.Title = "Добавить уведомление";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавить уведомление</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <p>Текст уведомления: @Html.TextAreaFor(x => x.Text, 5, 30, null)</p><br />
+    <p>dd/MM/yyyy</p>
+    <p>Дата уведомления: @Html.TextBoxFor(x => x.Date)</p><br />
+    <p>HH:mm</p>
+    <p>Время уведомления: @Html.TextBoxFor(x => x.Time)</p>
+    <input type="submit" value="Добавить уведомление" />
+}
+
+<br />
+<div>
+    <p>@Html.ActionLink("к уведомлениям", "Index", "Notice", null, new { @class = "btn btn-default" })</p>
+</div>

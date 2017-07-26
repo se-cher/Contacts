@@ -1,0 +1,82 @@
+﻿@model Contacts.Models.ContactModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameImage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Семья", "Family", "Contact", new { id=Model.Id }, new { @class = "btn btn-default" })
+            </th>
+            <th>
+                @Html.ActionLink("Работа", "Job", "Contact", new { id = Model.Id }, new { @class = "btn btn-default" })
+            </th>
+            <th>
+                @Html.ActionLink("Друзья", "Friends", "Contact", new { id = Model.Id }, new { @class = "btn btn-default" })
+            </th>
+            <th>
+                @Html.ActionLink("Адрес", "Address", "Contact", new { id = Model.Id }, new { @class = "btn btn-default" })
+            </th>
+            <th></th>
+        </tr>
+        
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+    </table>
+</p>
+
+<p>
+    @Html.ActionLink("к контактам", "Index", "Contact", null, new { @class = "btn btn-default" })
+</p>

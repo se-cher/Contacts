@@ -1,0 +1,173 @@
+﻿@model Contacts.Models.ContactEditModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Редактировать контакты</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div id="tabs">
+
+        <ul>
+            <li><a href="#tabs-1">Общее</a></li>
+            <li><a href="#tabs-2">Адрес</a></li>
+            <li><a href="#tabs-3">Работа</a></li>
+            <li><a href="#tabs-4">Семья</a></li>
+            <li><a href="#tabs-5">Друзья</a></li>
+        </ul>
+
+        @*Общее*@
+        <div id="tabs-1">
+            @*@Html.ValidationSummary()*@
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ContactModel.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactModel.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ContactModel.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ContactModel.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactModel.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ContactModel.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ContactModel.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactModel.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ContactModel.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ContactModel.DateOfBirth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ContactModel.NameImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ContactModel.NameImage, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ContactModel.NameImage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        @*Адрес*@
+        <div id="tabs-2">
+            @*@Html.ValidationSummary()*@
+
+            @for (int i = 0; i < Model.AddressModels.Length; i++)
+            {
+
+                <input name="@($"AddressModel[{i}].Id")" value="@Model.AddressModels[i].Id" type="hidden" />
+                <input name="@($"AddressModel[{i}].Country")" value="@Model.AddressModels[i].Country" />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AddressModels[i].Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.AddressModels[i].Country, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AddressModels[i].Country, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+
+
+        </div>
+            
+            
+            
+            
+            
+            
+            
+
+        @*Работа*@
+        @*<div id="tabs-3">
+            @Html.ValidationSummary()
+            <p>Компания: @Html.TextBoxFor(x => x.JobName)</p>
+            <p>@Html.ValidationMessageFor(x => x.JobName)</p>
+            <p>Должность: @Html.TextBoxFor(x => x.Position)</p>
+            <p>@Html.ValidationMessageFor(x => x.Position)</p>
+            <p>Адрес: @Html.TextBoxFor(x => x.Address)</p>
+        </div>*@
+
+        @*Семья
+        <div id="tabs-4">
+            @Html.ValidationSummary()
+            <p>Имя: @Html.DropDownListFor(model => model.FamilyContactId, ViewBag.Contacts as IEnumerable<SelectListItem>)</p>
+            <p>Статус: @Html.DropDownListFor(model => model.StatusModelId, ViewBag.Contacts as IEnumerable<SelectListItem>)</p>
+            <p>Фамилия: @Html.DropDownListFor(model => model.LastNameFamily, ViewBag.Contacts2 as SelectList)</p>
+
+        </div>*@
+
+        @*Друзья
+        <div id="tabs-5">
+            <p>Имя: @Html.DropDownListFor(model => model.FriendId, ViewBag.Contacts as IEnumerable<SelectListItem>)</p>
+            <p>Имя 2: @Html.DropDownListFor(model => model.FriendId, ViewBag.Contacts as IEnumerable<SelectListItem>)</p>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<br /><br />
+<div>
+    <p>@Html.ActionLink("к контактам", "Index", "Contact", null, new { @class = "btn btn-default" })</p>
+</div>
+
+
+
+@section scripts{
+    <script src="~/Scripts/custom.js"></script>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*for (int i = 0; i < Model.JobModels.Length; i++)
+    {
+
+        <input name="@($"JobModel[{i}].Id")" value="@Model.JobModels[i].Id" type="hidden" />
+        <input name="@($"JobModel[{i}].JobName")"  value="@Model.JobModels[i].JobName" />
+        <input name="@($"JobModel[{i}].Address")"  value="@Model.JobModels[i].Address" />
+        <input name="@($"JobModel[{i}].Position")"  value="@Model.JobModels[i].Position" />
+    }*@
+
+
+}
+
+<div>
+    <p>@Html.ActionLink("к контактам", "Index", "Contact", null, new { @class = "btn btn-default" })</p>
+</div>

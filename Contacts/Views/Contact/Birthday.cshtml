@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Contacts.Models.ContactModel>
+
+@{
+    ViewBag.Test = "Сегодня празднует день рождения, ";
+    ViewBag.TestMore = "Поздравляем именинника!!!";
+    ViewBag.Title = "Holiday";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+
+    @if (Model.Any())
+    {
+        foreach (var s in Model)
+        {
+            <h2>@ViewBag.Test</h2>
+            <h1>@s.FirstName @s.LastName</h1>
+            <br />
+            <h2>@ViewBag.TestMore</h2>
+        }
+    }
+    else
+    {
+        <h1>Сегодня именинников нет!</h1>
+    }
+
+</div>
+

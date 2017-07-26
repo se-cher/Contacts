@@ -1,0 +1,40 @@
+﻿@model FamilyDetailsModel
+
+@{
+    ViewBag.Title = "Family";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int addressCount = 0;
+}
+<h2>@Model.FirstNameFamily @Model.LastNameFamily</h2>
+<h4>Family:</h4>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Инфо</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Familys)
+    {
+        <tr>
+            <td>
+                @(++addressCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Info)
+            </td>
+        </tr>
+    }
+</table>
+
+
+

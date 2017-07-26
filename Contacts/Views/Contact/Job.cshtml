@@ -1,0 +1,38 @@
+﻿@model JobDetailsModel
+
+@{
+    ViewBag.Title = "Job";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int addressCount = 0;
+}
+<h2>@Model.FirstName @Model.LastName</h2>
+<h4>Job:</h4>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Название</th>
+        <th>Должность</th>
+        <th>Адрес</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Jobs)
+    {
+        <tr>
+            <td>
+                @(++addressCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+        </tr>
+    }
+</table>
+

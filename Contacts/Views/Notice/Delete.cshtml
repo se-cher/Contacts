@@ -1,0 +1,41 @@
+﻿@model Contacts.Models.NoticeModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы хотите удалить это уведомление?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateNotice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateNotice)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> 
+            <br/><br />
+            <p>@Html.ActionLink("к уведомлениям", "Index", "Notice", null, new { @class = "btn btn-default" })</p>
+        </div>
+    }
+</div>

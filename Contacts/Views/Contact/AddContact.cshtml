@@ -1,0 +1,90 @@
+﻿@model Contacts.Models.AddContactModel
+
+@{
+    ViewBag.Title = "AddContact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавление контакта</h2>
+
+@using (Html.BeginForm("AddContact", "Contact", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div id="tabs">
+
+        <ul>
+            <li><a href="#tabs-1">Общее</a></li>
+            <li><a href="#tabs-2">Адрес</a></li>
+            <li><a href="#tabs-3">Работа</a></li>
+            <li><a href="#tabs-4">Семья</a></li>
+            <li><a href="#tabs-5">Друзья</a></li>
+        </ul>
+
+        @*Общее*@
+        <div id="tabs-1">
+            @*@Html.ValidationSummary()*@
+            <p>Имя: @Html.TextBoxFor(x => x.FirstName)</p>
+            <p>@Html.ValidationMessageFor(x => x.FirstName)</p>
+            <p>Фамилия: @Html.TextBoxFor(x => x.LastName)</p>
+            <p>@Html.ValidationMessageFor(x => x.LastName)</p>
+            <p>Дата рождения: @Html.TextBoxFor(x => x.DateOfBirth)</p>
+            <p>@Html.ValidationMessageFor(x => x.DateOfBirth)</p>
+            <p>Фото: <input type="file" name="ImageFile" /></p>
+        </div>
+
+        @*Адрес*@
+        <div id="tabs-2">
+            @*@Html.ValidationSummary()*@
+            <p>Страна: @Html.TextBoxFor(x => x.Country)</p>
+            <p>@Html.ValidationMessageFor(x => x.Country)</p>
+            <p>Город: @Html.TextBoxFor(x => x.City)</p>
+            <p>@Html.ValidationMessageFor(x => x.City)</p>
+            <p>Улица: @Html.TextBoxFor(x => x.Street)</p>
+            <p>Дом: @Html.TextBoxFor(x => x.House)</p>
+            <p>Квартира: @Html.TextBoxFor(x => x.Apartment)</p>
+            <p>Телефон: @Html.TextBoxFor(x => x.Phone)</p>
+        </div>
+
+        @*Работа*@
+        <div id="tabs-3">
+            @*@Html.ValidationSummary()*@
+            <p>Компания: @Html.TextBoxFor(x => x.JobName)</p>
+            <p>@Html.ValidationMessageFor(x => x.JobName)</p>
+            <p>Должность: @Html.TextBoxFor(x => x.Position)</p>
+            <p>@Html.ValidationMessageFor(x => x.Position)</p>
+            <p>Адрес: @Html.TextBoxFor(x => x.Address)</p>
+        </div>
+
+        @*Семья*@
+        <div id="tabs-4">
+            @*@Html.ValidationSummary()*@
+            <p>Имя: @Html.DropDownListFor(model => model.FamilyContactId, ViewBag.Contacts as IEnumerable<SelectListItem>)</p>
+            @*<p>Статус: @Html.DropDownListFor(model => model.StatusModelId, ViewBag.Contacts as IEnumerable<SelectListItem>)</p>*@
+            @*<p>Фамилия: @Html.DropDownListFor(model => model.LastNameFamily, ViewBag.Contacts2 as SelectList)</p>*@
+
+        </div>
+
+        @*Друзья*@
+        <div id="tabs-5">
+            <p>Имя: @Html.DropDownListFor(model => model.FriendId, ViewBag.Contacts as IEnumerable<SelectListItem>)</p>
+            <p>Имя 2: @Html.DropDownListFor(model => model.FriendId, ViewBag.Contacts as IEnumerable<SelectListItem>)</p>
+        </div>
+
+        <div>
+            <input type="submit" value="Добавить контакт" />
+        </div>
+    </div>
+}
+
+
+<br /><br />
+<div>
+    <p>@Html.ActionLink("к контактам", "Index", "Contact", null, new { @class = "btn btn-default" })</p>
+</div>
+
+
+
+@section scripts{
+    <script src="~/Scripts/custom.js"></script>
+
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Contacts.Models.NoticeModel>
+
+@{
+    ViewBag.Title = "Уведомления";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Уведомления</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Текст уведомления:
+        </th>
+        <th>
+            Дата уведомления:
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateNotice)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", "Notice", new { id = item.Id }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Удалить", "Delete", "Notice", new { id = item.Id }, new { @class = "btn btn-default" })
+        </td>
+    </tr>
+}
+</table>
+
+<p>
+    @Html.ActionLink("Добавить уведомление", "Create", "Notice", null, new { @class = "btn btn-default" })
+</p>

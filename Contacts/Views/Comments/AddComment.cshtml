@@ -1,0 +1,21 @@
+﻿@model Contacts.Models.AddCommentModel
+
+@{
+    ViewBag.Title = "Добавить отзыв";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавить отзыв</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <p>Имя: @Html.TextBoxFor(x => x.Name)</p>
+    <p>Отзыв: @Html.TextAreaFor(x => x.Text, 10, 40, null)</p>
+    <input type="submit" value="Добавить отзыв" />
+}
+
+<br/>
+<div>
+    @Html.ActionLink("вернуться к отзывам", "Index")
+</div>
